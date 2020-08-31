@@ -1,0 +1,17 @@
+.criminalsContainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+.criminal-card {
+    margin: 0.5em;
+    padding: 0.25em;
+    border: solid 1px;
+    flex-basis: 15%;
+    min-width: 200px;
+}
+
+.criminal-card > h2{
+    margin-top: 0.25em;
+}
