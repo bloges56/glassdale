@@ -7,8 +7,6 @@ export const OfficerList = () => {
         const officersArr = useOfficers();
         const officersHTMLArr = officersArr.map(officer => Officer(officer));
         const officerCont = document.querySelector(".officersContainer");
-        for(var officerHTML of officersHTMLArr){
-            officerCont.innerHTML += officerHTML;
-        }
+        officerCont.innerHTML = officersHTMLArr.join("");
     })
 }
