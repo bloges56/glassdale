@@ -29,7 +29,7 @@ export const ConvictionSelect = () => {
                         return `
                             <option> ${crime.name}</option>
                         `;
-                    }).join("")
+                    }).sort().join("")
                 }
             </select>
         `
