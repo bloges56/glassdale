@@ -2,13 +2,13 @@
     display: flex;
 }
 
-.criminalsContainer {
+.criminalsContainer, .witnessesContainer{
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
 }
 
-.criminal-card {
+.criminal-card, .witness-card{
     margin: 0.5em;
     padding: 0.25em;
     border: solid 1px;

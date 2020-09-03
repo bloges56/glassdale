@@ -12,6 +12,7 @@ const render = (witnesses) => {
 
 eventHub.addEventListener('click', event => {
     if(event.target.id === "witnessesBtn"){
+        document.querySelector('.criminalsContainer').classList.add("hidden");
         getWitnesses()
         .then(_ =>{
             const witnesses = useWitnesses();
