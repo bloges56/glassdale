@@ -1,5 +1,6 @@
 import { getCriminals, useCriminals } from './CriminalProvider.js'
 import { Criminal } from './Criminal.js'
+import { getNotes, useNotes } from '../notes/NoteProvider.js'
 
 const eventHub = document.querySelector(".container")
 const contentTarget = document.querySelector(".criminalsContainer")
@@ -44,9 +45,17 @@ eventHub.addEventListener('choseOfficer', event => {
 })
 
 const render = criminalCollection => {
-    contentTarget.innerHTML = criminalCollection.map(criminal => {
-        return Criminal(criminal)
-    }).join("");
+    getNotes()
+    .then(_ => {
+        const notes = useNotes();
+        contentTarget.innerHTML = criminalCollection.map(criminal => {
+            const criminalNotes = notes.filter(note => {
+                return note.crimnal === criminal.name
+            })
+            return Criminal(criminal, criminalNotes)
+        }).join("");
+    })
+    
 }
 
 
