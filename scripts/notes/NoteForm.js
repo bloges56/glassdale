@@ -1,4 +1,5 @@
 import { saveNote } from './NoteProvider.js'
+import { getCriminals, useCriminals } from '../criminals/CriminalProvider.js'
 
 const eventHub = document.querySelector('.container')
 
@@ -6,37 +7,66 @@ const eventHub = document.querySelector('.container')
 eventHub.addEventListener("click", clickEvent => {
     if (clickEvent.target.id === "saveNote") {
 
-        // Make a new object representation of a note
-        const newNote = {
-            "date": document.getElementById('form-date').value,
-            "crimnal": document.getElementById('form-criminal').value,
-            "note": document.getElementById('form-note').value
-        }
-        // Change API state and application state
-        saveNote(newNote)
+        var today = new Date();
+        var dd = today.getDate();
 
-        document.getElementById('form-date').value = ""
-        document.getElementById('form-criminal').value = ""
-        document.getElementById('form-note').value = ""
+        var mm = today.getMonth()+1; 
+        var yyyy = today.getFullYear();
+        if(dd<10) 
+        {
+            dd='0'+dd;
+        } 
+
+        if(mm<10) 
+        {
+            mm='0'+mm;
+        } 
+        today = yyyy+'-'+dd+'-'+mm;
+
+        // Make a new object representation of a note
+        if(document.getElementById('form-criminal').value !== "0"){
+            const newNote = {
+                "date": today,
+                "crimnal": document.getElementById('form-criminal').value,
+                "note": document.getElementById('form-note').value
+            }
+            // Change API state and application state
+            saveNote(newNote)
+    
+            document.getElementById('form-criminal').value = ""
+            document.getElementById('form-note').value = ""
+        }
+        else{
+            window.alert("choose a suspect");
+        }
+       
     }
 })
 
 const contentTarget = document.querySelector(".noteFormContainer")
 
-const render = () => {
+const render = (criminalArray) => {
     contentTarget.innerHTML = `
         <form>
-            <label for="criminal">Criminal:</label>
-            <input type="text" id="form-criminal" name="criminal"><br><br>
-            <label for="date">Date:</label>
-            <input type="date" id="form-date" name="date"><br><br>
+            <select class="dropdown" id="form-criminal">
+                <option value="0">Please select a criminal...</option>
+                ${criminalArray.map(criminal => {
+                    return `
+                        <option value="${criminal.name}">${criminal.name}</option>
+                    `
+                }).sort().join("")}
+            </select><br><br>
             <label for="note">Note:</label>
-            <input type="text" id="form-note" name="note"><br><br>
+            <textarea id="form-note" name="note" placeholder="Enter note here..."></textarea><br><br>
         </form>
         <button id="saveNote">Save Note</button>
     `
 }
 
 export const NoteForm = () => {
-    render()
+    getCriminals()
+    .then(_ => {
+        const criminalArray = useCriminals();
+        render(criminalArray)
+    })
 }
