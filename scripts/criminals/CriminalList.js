@@ -5,6 +5,12 @@ import { getNotes, useNotes } from '../notes/NoteProvider.js'
 const eventHub = document.querySelector(".container")
 const contentTarget = document.querySelector(".criminalsContainer")
 
+
+eventHub.addEventListener('noteStateChanged', event => {
+    const appStateCriminals = useCriminals();
+    render(appStateCriminals);
+})
+
 // Listen for the custom event you dispatched in ConvictionSelect
 eventHub.addEventListener('crimeChosen', event => {
     // You remembered to add the id of the crime to the event detail, right?
@@ -77,7 +83,7 @@ const render = criminalCollection => {
                 return note.crimnal === criminal.name
             })
             return Criminal(criminal, criminalNotes)
-        }).join("");
+        }).sort().join("");
     })
     
 }
