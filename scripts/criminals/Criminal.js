@@ -13,7 +13,7 @@ export const Criminal = (criminal, notes) => {
             <div>Term start: ${GetFormattedDate(criminal.incarceration.start)}</div>
             <div> Term end: ${GetFormattedDate(criminal.incarceration.end)}</div>
             <button id="associates--${criminal.id}">Associate Alibis</button>
-            <div class="hidden" id="alibies-${criminal.id}">
+            <div class="hidden" id="alibies--${criminal.id}">
                 ${criminal.known_associates.map(associate => {
                     return `
                         <div>${associate.name}: ${associate.alibi}</div>
@@ -25,7 +25,6 @@ export const Criminal = (criminal, notes) => {
                 ${`
                 <Notes>
                 ${notes.map(note => {
-                    debugger;
                     return Note(note)
                 }).join("")}
                 `}

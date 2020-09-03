@@ -71,6 +71,12 @@
       "crimnal": "Ashlynn Buckridge",
       "note": "testing blank criminal",
       "id": 12
+    },
+    {
+      "date": "2020-03-09",
+      "crimnal": "Madelyn Lebsack",
+      "note": "testing event",
+      "id": 13
     }
   ]
 }

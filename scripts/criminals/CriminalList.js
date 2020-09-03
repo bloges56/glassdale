@@ -44,6 +44,30 @@ eventHub.addEventListener('choseOfficer', event => {
     }
 })
 
+eventHub.addEventListener("click", event => {
+    if(event.target.id.startsWith("notesBtn")){
+        const [prefix, id] = event.target.id.split("--")
+        var notesCont = document.querySelector(`#notes--${id}`)
+        if(notesCont.classList.length === 0){
+            notesCont.classList.add('hidden')
+        }
+        else{
+            notesCont.classList = [];
+        }
+    }
+
+    else if(event.target.id.startsWith("associates--")){
+        const [prefix, id] = event.target.id.split("--")
+        var alibiesCont = document.querySelector(`#alibies--${id}`)
+        if(alibiesCont.classList.length === 0){
+            alibiesCont.classList.add('hidden')
+        }
+        else{
+            alibiesCont.classList = [];
+        }
+    }
+})
+
 const render = criminalCollection => {
     getNotes()
     .then(_ => {

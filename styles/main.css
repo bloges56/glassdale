@@ -19,3 +19,7 @@
 .criminal-card > h2{
     margin-top: 0.25em;
 }
+
+.hidden {
+    display: none;
+}
