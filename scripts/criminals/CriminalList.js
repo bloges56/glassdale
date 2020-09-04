@@ -18,11 +18,18 @@ eventHub.addEventListener('crimeChosen', event => {
         /*
             Filter the criminals application state down to the people that committed the crime
         */
-        const appStateCriminals = useCriminals();
-        const matchingCriminals = appStateCriminals.filter(criminal => {
-            return criminal.conviction === event.detail.crimeId
-        })
-
+        var matchingCriminals = useCriminals();
+        if(event.detail.crimeId !== '0'){
+            matchingCriminals = matchingCriminals.filter(criminal => {
+                return criminal.conviction === event.detail.crimeId
+            })
+        }
+        const officerSelect = document.querySelector('#officerSelect');
+        if(officerSelect.value !== '0'){
+            matchingCriminals = matchingCriminals.filter(criminal => {
+                return criminal.arrestingOfficer === officerSelect.value;
+            })
+        }
         /*
             Then invoke render() and pass the filtered collection as
             an argument
@@ -37,11 +44,19 @@ eventHub.addEventListener('choseOfficer', event => {
         /*
             Filter the criminals application state down to the people that committed the crime
         */
-        const appStateCriminals = useCriminals();
-        const matchingCriminals = appStateCriminals.filter(criminal => {
-            return criminal.arrestingOfficer === event.detail.name
-        })
+        var matchingCriminals = useCriminals();
+        if(event.detail.name !== '0'){
+            matchingCriminals = matchingCriminals.filter(criminal => {
+                return criminal.arrestingOfficer === event.detail.name
+            })
+        }
 
+        const crimeSelect = document.querySelector('#crimeSelect');
+        if(crimeSelect.value !== '0'){
+            matchingCriminals = matchingCriminals.filter(criminal => {
+                return criminal.conviction === crimeSelect.value;
+            })
+        }
         /*
             Then invoke render() and pass the filtered collection as
             an argument
