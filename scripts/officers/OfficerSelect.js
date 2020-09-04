@@ -21,7 +21,7 @@ const render = (officers) => {
             <option value="0">Please select an officer...</option>
             ${officers.map(officer => {
                 return `
-                    <option>${officer.name}</option>
+                    <option value="${officer.name}">${officer.name}</option>
                 `;
             }).sort().join("")}
         </select>

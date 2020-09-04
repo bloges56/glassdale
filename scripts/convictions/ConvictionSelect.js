@@ -31,7 +31,7 @@ const render = convictionsCollection => {
             <option value="0">Please select a crime...</option>
             ${convictionsCollection.map(conviction => {
                 return `
-                    <option>${conviction.name}</option>
+                    <option value="${conviction.name}">${conviction.name}</option>
                 `
             }).sort().join("")}
         </select>
