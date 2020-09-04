@@ -18,5 +18,8 @@ eventHub.addEventListener('click', event => {
             const witnesses = useWitnesses();
             render(witnesses);
         })
+        event.target.classList.add('hidden');
+        document.querySelector('#criminalsBtn').classList.remove('hidden');
+        contentTarget.classList.remove('hidden');
     }
 })
