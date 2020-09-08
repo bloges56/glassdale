@@ -4,7 +4,7 @@ const eventHub = document.querySelector('.container')
 
 
 
-export const Criminal = (criminal, notes) => {
+export const Criminal = (criminal) => {
     return `
         <div class="criminal-card">
             <h2>${criminal.name}</h2>
@@ -20,14 +20,8 @@ export const Criminal = (criminal, notes) => {
                     `
                 }).join("")}
             </div>
-            <button id="notesBtn--${criminal.id}">Notes</button>
-            <div class="hidden" id="notes--${criminal.id}">
-                ${`
-                <Notes>
-                ${notes.map(note => {
-                    return Note(note)
-                }).join("")}
-                `}
+            <button id="notesBtn--${criminal.name.split(" ").join("")}">Notes</button>
+            <div class="hidden" id="notes--${criminal.name.split(" ").join("")}">
             </div>
         </div>
     `;

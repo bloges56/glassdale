@@ -1,4 +1,4 @@
-import { saveNote } from './NoteProvider.js'
+import { saveNote, dispatchStateChangeEvent } from './NoteProvider.js'
 import { getCriminals, useCriminals } from '../criminals/CriminalProvider.js'
 
 const eventHub = document.querySelector('.container')
@@ -32,6 +32,9 @@ eventHub.addEventListener("click", clickEvent => {
             }
             // Change API state and application state
             saveNote(newNote)
+            .then(_ =>{
+                dispatchStateChangeEvent(newNote)
+            })
     
             document.getElementById('form-criminal').value = ""
             document.getElementById('form-note').value = ""
@@ -46,7 +49,7 @@ eventHub.addEventListener("click", clickEvent => {
 const contentTarget = document.querySelector(".noteFormContainer")
 
 const render = (criminalArray) => {
-    contentTarget.innerHTML = `
+    contentTarget.innerHTML += `
         <form>
             <select class="dropdown" id="form-criminal">
                 <option value="0">Please select a criminal...</option>
