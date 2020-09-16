@@ -7,12 +7,13 @@ const eventHub = document.querySelector(".container")
 eventHub.addEventListener("noteStateChanged", event => {
     const criminals = useCriminals();
     const notesCriminal = criminals.find(criminal => {
-        return event.detail.noteCriminal === criminal.name
+        return event.detail.criminalID === criminal.id.toString()
     })
     const notes = useNotes();
     const foundNotes = notes.filter(note => {
-        return notesCriminal.name === note.crimnal
+        return notesCriminal.id.toString() === note.criminal
     })
+    //debugger;
     render(foundNotes, notesCriminal.name.split(" ").join(""))
 })
 
@@ -37,7 +38,7 @@ export const NoteList = () => {
             const criminals = useCriminals();
             criminals.forEach(criminal => {
             const criminalNotes = notes.filter(note => {
-                return note.crimnal === criminal.name     
+                return note.criminal === criminal.id.toString()     
             })
             render(criminalNotes, criminal.name.split(" ").join(""))
             })

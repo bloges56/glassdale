@@ -3,7 +3,7 @@ const eventHub = document.querySelector(".container")
 export const dispatchStateChangeEvent = (note) => {
     const noteStateChangedEvent = new CustomEvent("noteStateChanged", {
         detail: {
-            noteCriminal: note.crimnal
+            criminalID: note.criminal
         }
     })
 

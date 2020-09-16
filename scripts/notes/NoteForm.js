@@ -27,7 +27,7 @@ eventHub.addEventListener("click", clickEvent => {
         if(document.getElementById('form-criminal').value !== "0"){
             const newNote = {
                 "date": today,
-                "crimnal": document.getElementById('form-criminal').value,
+                "criminal": document.getElementById('form-criminal').value,
                 "note": document.getElementById('form-note').value
             }
             // Change API state and application state
@@ -55,7 +55,7 @@ const render = (criminalArray) => {
                 <option value="0">Please select a criminal...</option>
                 ${criminalArray.map(criminal => {
                     return `
-                        <option value="${criminal.name}">${criminal.name}</option>
+                        <option id="${criminal.name}" value="${criminal.id}">${criminal.name}</option>
                     `
                 }).sort().join("")}
             </select><br><br>
