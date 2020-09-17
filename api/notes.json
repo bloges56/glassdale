@@ -1,16 +1,3 @@
 {
-  "notes": [
-    {
-      "date": "2020-17-09",
-      "criminalId": 69,
-      "note": "test",
-      "id": 1
-    },
-    {
-      "date": "2020-17-09",
-      "criminalId": 69,
-      "note": "second test",
-      "id": 2
-    }
-  ]
+  "notes": []
 }
