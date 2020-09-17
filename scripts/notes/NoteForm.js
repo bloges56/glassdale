@@ -1,4 +1,4 @@
-import { saveNote } from './NoteProvider.js'
+import { saveNote, dispatchStateChangeEvent } from './NoteProvider.js'
 import { getCriminals, useCriminals } from '../criminals/CriminalProvider.js'
 
 const eventHub = document.querySelector('.container')
@@ -27,11 +27,14 @@ eventHub.addEventListener("click", clickEvent => {
         if(document.getElementById('form-criminal').value !== "0"){
             const newNote = {
                 "date": today,
-                "crimnal": document.getElementById('form-criminal').value,
+                "criminalId": parseInt(document.getElementById('form-criminal').value),
                 "note": document.getElementById('form-note').value
             }
             // Change API state and application state
             saveNote(newNote)
+            .then(_ =>{
+                dispatchStateChangeEvent(newNote)
+            })
     
             document.getElementById('form-criminal').value = ""
             document.getElementById('form-note').value = ""
@@ -46,13 +49,13 @@ eventHub.addEventListener("click", clickEvent => {
 const contentTarget = document.querySelector(".noteFormContainer")
 
 const render = (criminalArray) => {
-    contentTarget.innerHTML = `
+    contentTarget.innerHTML += `
         <form>
             <select class="dropdown" id="form-criminal">
                 <option value="0">Please select a criminal...</option>
                 ${criminalArray.map(criminal => {
                     return `
-                        <option value="${criminal.name}">${criminal.name}</option>
+                        <option id="${criminal.name}" value="${criminal.id}">${criminal.name}</option>
                     `
                 }).sort().join("")}
             </select><br><br>

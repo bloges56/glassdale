@@ -6,10 +6,10 @@ const eventHub = document.querySelector(".container")
 const contentTarget = document.querySelector(".criminalsContainer")
 
 
-eventHub.addEventListener('noteStateChanged', event => {
-    const appStateCriminals = useCriminals();
-    render(appStateCriminals);
-})
+// eventHub.addEventListener('noteStateChanged', event => {
+//     const appStateCriminals = useCriminals();
+//     render(appStateCriminals);
+// })
 
 // Listen for the custom event you dispatched in ConvictionSelect
 eventHub.addEventListener('crimeChosen', event => {
@@ -90,17 +90,9 @@ eventHub.addEventListener("click", event => {
 })
 
 const render = criminalCollection => {
-    getNotes()
-    .then(_ => {
-        const notes = useNotes();
-        contentTarget.innerHTML = criminalCollection.map(criminal => {
-            const criminalNotes = notes.filter(note => {
-                return note.crimnal === criminal.name
-            })
-            return Criminal(criminal, criminalNotes)
-        }).sort().join("");
-    })
-    
+    contentTarget.innerHTML = criminalCollection.map(criminal => {
+        return Criminal(criminal)
+    }).sort().join("")
 }
 
 
