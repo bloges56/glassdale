@@ -27,7 +27,7 @@ eventHub.addEventListener("click", clickEvent => {
         if(document.getElementById('form-criminal').value !== "0"){
             const newNote = {
                 "date": today,
-                "criminal": document.getElementById('form-criminal').value,
+                "criminalId": parseInt(document.getElementById('form-criminal').value),
                 "note": document.getElementById('form-note').value
             }
             // Change API state and application state
