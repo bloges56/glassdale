@@ -5,7 +5,6 @@ import { useNotes, getNotes, deleteNote } from './NoteProvider.js';
 const eventHub = document.querySelector(".container")
 
 eventHub.addEventListener("noteStateChanged", event => {
-    debugger;
     const criminals = useCriminals();
     const notesCriminal = criminals.find(criminal => {
         return event.detail.criminalID === criminal.id

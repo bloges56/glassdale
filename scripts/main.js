@@ -8,8 +8,8 @@ import {  } from "./witnesses/WitnessList.js"
 import './criminals/CriminalButton.js'
 
 //OfficerList();
-CriminalList();
+CriminalList().then(NoteList);
 ConvictionSelect();
 OfficerSelect();
 NoteForm();
-NoteList();
+// NoteList();
