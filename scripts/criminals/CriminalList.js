@@ -1,6 +1,7 @@
 import { getCriminals, useCriminals } from './CriminalProvider.js'
 import { Criminal } from './Criminal.js'
-import { getNotes, useNotes } from '../notes/NoteProvider.js'
+import { getCriminalFacilities, useCriminalFacilities } from '../facilities/CriminalFacilityProvider.js'
+import { getFacilities, useFacilities } from '../facilities/FacilityProvider.js'
 
 const eventHub = document.querySelector(".container")
 const contentTarget = document.querySelector(".criminalsContainer")
@@ -89,18 +90,33 @@ eventHub.addEventListener("click", event => {
     }
 })
 
-const render = criminalCollection => {
+const render = (criminalCollection, facilities, criminalFacilities) => {
     contentTarget.innerHTML = criminalCollection.map(criminal => {
-        return Criminal(criminal)
+        const foundCriminalFacilities = criminalFacilities.filter(criminalFacility => {
+            return criminalFacility.criminalId === criminal.id
+        })
+        const foundFacilities = foundCriminalFacilities.map(criminalFacility => {
+            return facilities.find(facility => {
+                return criminalFacility.facilityId === facility.id
+            })
+        })
+        return Criminal(criminal, foundFacilities)
     }).sort().join("")
 }
 
 
 // Render ALL criminals initally
 export const CriminalList = () => {
-    getCriminals()
-        .then(() => {
-            const appStateCriminals = useCriminals()
-            render(appStateCriminals)
+    return getCriminals()
+        .then(getFacilities)
+        .then(getCriminalFacilities)
+        .then(_ => {
+            // Pull in the data now that it has been fetched
+            const facilities = useFacilities()
+            const crimFac = useCriminalFacilities()
+            const criminals = useCriminals()
+
+            // Pass all three collections of data to render()
+            render(criminals, facilities, crimFac)
         })
 }

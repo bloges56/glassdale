@@ -4,7 +4,7 @@ const eventHub = document.querySelector('.container')
 
 
 
-export const Criminal = (criminal) => {
+export const Criminal = (criminal, facilities) => {
     return `
         <div class="criminal-card">
             <h2>${criminal.name}</h2>
@@ -12,6 +12,12 @@ export const Criminal = (criminal) => {
             <div>Crime: ${criminal.conviction}</div>
             <div>Term start: ${GetFormattedDate(criminal.incarceration.start)}</div>
             <div> Term end: ${GetFormattedDate(criminal.incarceration.end)}</div>
+            <div>
+                <h3>Facilities</h3>
+                <ul>
+                    ${facilities.map(f => `<li>${f.facilityName}</li>`).join("")}
+                </ul>
+            </div>
             <button id="associates--${criminal.id}">Associate Alibis</button>
             <div class="hidden" id="alibies--${criminal.id}">
                 ${criminal.known_associates.map(associate => {

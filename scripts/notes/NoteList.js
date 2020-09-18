@@ -20,18 +20,8 @@ eventHub.addEventListener('click', event => {
     if(event.target.id.startsWith("deleteNote--")){
         const [notePrefix, noteId] = event.target.id.split("--")
         const [criminalPrefix, criminalId] = event.target.classList[0].split("--")
-        const criminals = useCriminals();
-        const notesCriminal = criminals.find(criminal => {
-            return parseInt(criminalId) === criminal.id
-        })
-        deleteNote(noteId)
-        .then(_ => {
-            const notes = useNotes();
-            const foundNotes = notes.filter(note => {
-                return notesCriminal.id === note.criminalId
-            })
-            render(foundNotes, notesCriminal.name.split(" ").join(""))
-        })
+        
+        deleteNote(noteId, parseInt(criminalId))
     }
 })
 
