@@ -33,7 +33,7 @@ eventHub.addEventListener("click", clickEvent => {
             // Change API state and application state
             saveNote(newNote)
             .then(_ =>{
-                dispatchStateChangeEvent(newNote)
+                dispatchStateChangeEvent(newNote.criminalId)
             })
     
             document.getElementById('form-criminal').value = ""

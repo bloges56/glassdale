@@ -1,9 +1,9 @@
 const eventHub = document.querySelector(".container")
 
-export const dispatchStateChangeEvent = (note) => {
+export const dispatchStateChangeEvent = (criminal) => {
     const noteStateChangedEvent = new CustomEvent("noteStateChanged", {
         detail: {
-            criminalID: note.criminalId
+            criminalID: criminal
         }
     })
 
@@ -30,14 +30,16 @@ export const saveNote = note => {
         body: JSON.stringify(note)
     })
     .then(getNotes)
-    //.then(dispatchStateChangeEvent(note))
 }
 
-export const deleteNote = noteId => {
+export const deleteNote = (noteId, criminalId) => {
     return fetch(`http://localhost:8088/notes/${noteId}`, {
         method: "DELETE"
     })
     .then(getNotes)
+    .then(_ => {
+        dispatchStateChangeEvent(criminalId)
+    })
 }
 
 export const useNotes = () => {
