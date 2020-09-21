@@ -6,12 +6,12 @@
     display: flex;
 }
 
-#criminalsContainer, .witnessesContainer{
+#criminalsContainer, .witnessesContainer, #facilitiesContainer{
     flex-wrap: wrap;
     justify-content: space-evenly;
 }
 
-.criminal-card, .witness-card{
+.criminal-card, .witness-card, .facility-card {
     margin: 0.5em;
     padding: 0.25em;
     border: solid 1px;
