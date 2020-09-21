@@ -19,15 +19,15 @@
                 <div class="filter filters__incarceration"></div>
                 <div class="filter filters__officer"></div>
                 <button id="witnessesBtn">Witness Statements</button>
-                <button class="hidden" id="criminalsBtn">Criminals</button>
+                <!-- <button class="hidden" id="criminalsBtn">Criminals</button> -->
                 <button id="facilitiesBtn">List Facilities</button>
                 <button class="hidden" id="criminalsBtn">List Criminals</button>
             </div>
         </header>
         <article class="officersContainer"></article>
-        <article class="criminalsContainer"></article>
-        <article class="witnessesContainer"></article>
-        <article class="facilitiesContainer hidden"></article>
+        <article id="criminalsContainer" style="display: flex;"></article>
+        <article class="witnessesContainer" style="display: none;"></article>
+        <article id="facilitiesContainer" style="display: none;"></article>
     </main>
 
     <script type="module" src="./scripts/main.js"></script>

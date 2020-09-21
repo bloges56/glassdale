@@ -1,9 +1,12 @@
+.hidden {
+    display: none;
+}
+
 .filters {
     display: flex;
 }
 
-.criminalsContainer, .witnessesContainer{
-    display: flex;
+#criminalsContainer, .witnessesContainer{
     flex-wrap: wrap;
     justify-content: space-evenly;
 }
@@ -18,10 +21,6 @@
 
 .criminal-card > h2{
     margin-top: 0.25em;
-}
-
-.hidden {
-    display: none;
 }
 
 .noteFormContainer {

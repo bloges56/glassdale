@@ -4,7 +4,7 @@ import { getCriminalFacilities, useCriminalFacilities } from '../facilities/Crim
 import { getFacilities, useFacilities } from '../facilities/FacilityProvider.js'
 
 const eventHub = document.querySelector(".container")
-const contentTarget = document.querySelector(".criminalsContainer")
+const contentTarget = document.querySelector("#criminalsContainer")
 
 
 // eventHub.addEventListener('noteStateChanged', event => {
